@@ -1,6 +1,6 @@
 # bag-of-things
 
-> Add things, revemo things, get random thing from a virtual bag
+> Add things, remove things, get random thing from a virtual bag
 
 ## Build Setup
 

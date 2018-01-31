@@ -1,7 +1,24 @@
 <template>
   <div id="app">
-    <bag/>
-  </div>
+    <div class="container">
+      <header class="has-text-centered">
+        <h1 class="title">
+          Bolsas con cosas
+        </h1>
+        <p class="subtitle">
+          Agrega, remueve y saca cosas de bolsas virtuales.
+        </p>
+      </header>
+      <div class="has-text-left">
+        <a class="button is-primary is-large" @click="addBag">+</a>
+      </div>
+      <br>
+      <div>
+        
+        <bag class ="bag" :name="bag.name" :items="bag.items" v-for="(bag, index) in bags" :key="index"/>
+      </div>
+    </div>
+  </div>  
 </template>
 
 <script>
@@ -24,40 +41,26 @@ import bag from './Bag.vue'
 
 export default {
   name: 'app',
-  components: {bag},  
+  components: {bag},
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      bags: [{name:'Bolsa de cosas', items:[]}],
+      number: 1
+    }
+  },
+  methods: {
+    addBag() {
+      this.bags.push({})
+      this.number++
     }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+  .bag {
+    margin: 20px;
+    width: 45%;
+    display: inline-block;
+  }
 </style>

@@ -1,6 +1,6 @@
 {
   "name": "bag-of-things",
-  "description": "Add things, revemo things, get random thing from a virtual bag",
+  "description": "Add things, remove things, get random thing from a virtual bag",
   "version": "1.0.0",
   "author": "vitogit <vitogit@users.noreply.github.com>",
   "license": "MIT",
