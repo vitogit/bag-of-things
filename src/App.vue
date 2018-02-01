@@ -53,9 +53,12 @@ export default {
     let fetched = itemStorage.fetch()
     let defaultBags = [{name:'Dado de 6', items:[{name:1},{name:2},{name:3},{name:4},{name:5},{name:6}], number: 1}, 
                        {name:'Encuentros en el bosque', items:[{name:'Lobo'},{name:'Zombie'},{name:'Oso'},{name:'Vampiro'}], number: 2}]
+    let bags = (fetched.length ? fetched : defaultBags)
+    let maxNumber = Math.max(...bags.map(e => e.number))
+
     return {
-      bags: (fetched.length ? fetched : defaultBags),
-      number: 2
+      bags: bags,
+      number: maxNumber
     }
   },
   methods: {

@@ -8,8 +8,8 @@
         v-if="editingBag"
         v-model="name"
       />
+      <button class="delete" @click="remove" style="vertical-align:middle">X</button>
       <label class="label"v-if="!editingBag">
-        <button class="delete" @click="remove" style="vertical-align:middle">X</button>
         {{name}}
       </label>
       <span class="is-pulled-right">
