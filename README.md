@@ -3,6 +3,8 @@
 > Add things, remove things, get random thing from a virtual bag
 
 ![http://g.recordit.co/ZupMyzJMo1.gif](http://g.recordit.co/ZupMyzJMo1.gif)
+
+You can save your bags to the local storage
 ## Build Setup
 
 ``` bash

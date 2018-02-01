@@ -31,29 +31,30 @@
 <script>
 import bag from './Bag.vue'
 
-// const STORAGE_KEY = 'bag_of_many_things'
-// const itemStorage = {
-//   fetch() {
-//     const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-//     todos.forEach((todo, index) => {
-//       todo.id = index
-//     })
-//     itemStorage.uid = todos.length
-//     return todos
-//   },
-//   save(todos) {
-//     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-//   }
-// };
+const STORAGE_KEY = 'bag_of_many_things'
+const itemStorage = {
+  fetch() {
+    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    todos.forEach((todo, index) => {
+      todo.id = index
+    })
+    itemStorage.uid = todos.length
+    return todos
+  },
+  save(todos) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  }
+};
 
 export default {
   name: 'app',
   components: {bag},
   data () {
+    let fetched = itemStorage.fetch()
+    let defaultBags = [{name:'Dado de 6', items:[{name:1},{name:2},{name:3},{name:4},{name:5},{name:6}], number: 1}, 
+                       {name:'Encuentros en el bosque', items:[{name:'Lobo'},{name:'Zombie'},{name:'Oso'},{name:'Vampiro'}], number: 2}]
     return {
-      bags: [{name:'Dado de 6', items:[{name:1},{name:2},{name:3},{name:4},{name:5},{name:6}], number: 1},
-             {name:'Encuentros en el bosque', items:[{name:'Lobo'},{name:'Zombie'},{name:'Oso'},{name:'Vampiro'}], number: 2},
-    ],
+      bags: (fetched.length ? fetched : defaultBags),
       number: 2
     }
   },
@@ -66,7 +67,7 @@ export default {
       this.bags = this.bags.filter(e => e.number !== number);
     },
     save(){
-      
+      itemStorage.save(this.bags)
     }
   }
 }
