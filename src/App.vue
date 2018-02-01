@@ -11,11 +11,18 @@
       </header>
       <div class="has-text-left">
         <a class="button is-primary is-large" @click="addBag">+</a>
+        <a class="button is-info is-large" @click="save">Grabar</a>
       </div>
       <br>
       <div>
-        
-        <bag class ="bag" :name="bag.name" :items="bag.items" v-for="(bag, index) in bags" :key="index"/>
+
+        <bag 
+          class ="bag" 
+          @onRemove="removeBag(bag.number)"
+          :name="bag.name"
+          :items="bag.items" 
+          v-for="(bag, index) in bags" 
+          :key="index"/>
       </div>
     </div>
   </div>  
@@ -44,14 +51,20 @@ export default {
   components: {bag},
   data () {
     return {
-      bags: [{name:'Bolsa de cosas', items:[]}],
+      bags: [{name:'bag 1', items:[], number: 1}],
       number: 1
     }
   },
   methods: {
     addBag() {
-      this.bags.push({})
       this.number++
+      this.bags.push({name:'bag '+this.number, number: this.number})
+    },
+    removeBag(number) {
+      this.bags = this.bags.filter(e => e.number !== number);
+    },
+    save(){
+      
     }
   }
 }

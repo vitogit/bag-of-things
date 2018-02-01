@@ -6,10 +6,11 @@
         style="width:50%"
         type="text"
         v-if="editingBag"
-        v-model="bagName"
+        v-model="name"
       />
       <label class="label"v-if="!editingBag">
-        {{bagName}}
+        <button class="delete" @click="remove" style="vertical-align:middle">X</button>
+        {{name}}
       </label>
       <span class="is-pulled-right">
         <span class="buttons">
@@ -59,7 +60,7 @@
 
       <span class="is-pulled-right" v-if="item !== editingItem">
         <button class="delete" @click="removeItem(item)">X</button>
-        </span>
+      </span>
     </div>
   </nav>
 </template>
@@ -69,13 +70,21 @@ export default {
   name: 'bag',
   data() {
     return {
-      bagName: 'Bag',
       newItem: '',
       editingItem: {},
       editingBag: false,
-      items: [],//itemStorage.fetch(),
-      randomThing: ''
+      randomThing: '',
     }
+  },
+  props: {
+    name: {
+      type: String,
+      default: '',
+    },
+    items: {
+      type: Array,
+      default: () => [],
+    },
   },
   // watch change for localStorage persistence
   watch: {
@@ -116,6 +125,9 @@ export default {
     random() {
       let rand = this.items[Math.floor(Math.random() * this.items.length)];
       this.randomThing = rand.name
+    },
+    remove() {
+      this.$emit('onRemove')
     }
   }
 }
